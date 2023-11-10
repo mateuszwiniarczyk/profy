@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
 import "./global.css";
-import { ThemeProvider } from "@/providers/ThemeProvider";
+
+import { AppProvider } from "@/providers/AppProvider";
 import { MainLayout } from "@/components/layout/MainLayout";
 
 const inter = Public_Sans({ subsets: ["latin"] });
@@ -15,14 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <AppProvider>
           <MainLayout>{children}</MainLayout>
-        </ThemeProvider>
+        </AppProvider>
       </body>
     </html>
   );
