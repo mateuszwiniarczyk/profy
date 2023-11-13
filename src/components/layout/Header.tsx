@@ -11,17 +11,32 @@ export const Header = () => (
       <MainNav />
       <MobileNav />
       <SignedIn>
-        <UserButton afterSignOutUrl="/" />
+        <div className="flex gap-2">
+          <Link
+            href="/sign-up"
+            className={buttonVariants({
+              variant: "outline",
+            })}
+          >
+            Sign Up
+          </Link>
+          <UserButton afterSignOutUrl="/" />
+        </div>
       </SignedIn>
       <SignedOut>
-        <Link
-          href="/sign-in"
-          className={buttonVariants({
-            size: "sm",
-          })}
-        >
-          Sign In
-        </Link>
+        <div className="flex gap-2">
+          <Link
+            href="/sign-up"
+            className={buttonVariants({
+              variant: "outline",
+            })}
+          >
+            Sign Up
+          </Link>
+          <Link href="/sign-in" className={buttonVariants()}>
+            Sign In
+          </Link>
+        </div>
       </SignedOut>
     </div>
   </header>
