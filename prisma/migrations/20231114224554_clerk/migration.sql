@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Account" ADD COLUMN     "clerkId" INTEGER,
+ALTER COLUMN "type" SET DEFAULT 'COMPANY';

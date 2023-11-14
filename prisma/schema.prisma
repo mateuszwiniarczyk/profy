@@ -22,8 +22,9 @@ enum Type {
 }
 
 model Account {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  role  Role   @default(USER)
-  type  Type?
+  id      Int    @id @default(autoincrement())
+  email   String @unique
+  role    Role   @default(USER)
+  type    Type   @default(COMPANY)
+  clerkId String
 }
