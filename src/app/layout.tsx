@@ -5,7 +5,7 @@ import "./global.css";
 import { AppProvider } from "@/providers/AppProvider";
 import { MainLayout } from "@/components/layout/MainLayout";
 
-const inter = Public_Sans({ subsets: ["latin"] });
+const publicSans = Public_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={publicSans.className}>
         <AppProvider>
           <MainLayout>{children}</MainLayout>
         </AppProvider>
