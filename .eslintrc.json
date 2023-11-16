@@ -69,6 +69,14 @@
     "@typescript-eslint/restrict-template-expressions": [
       "error",
       { "allowNumber": true, "allowBoolean": true }
+    ],
+    "@typescript-eslint/no-misused-promises": [
+      2,
+      {
+        "checksVoidReturn": {
+          "attributes": false
+        }
+      }
     ]
   },
   "overrides": [

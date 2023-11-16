@@ -6,9 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
 }
 
 enum Role {
@@ -22,9 +21,79 @@ enum Type {
 }
 
 model Account {
-  id      Int    @id @default(autoincrement())
-  email   String @unique
-  role    Role   @default(USER)
-  type    Type   @default(COMPANY)
-  clerkId String
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  role      Role       @default(USER)
+  type      Type       @default(COMPANY)
+  clerkId   String
+  companies Company[]
+  employees Employee[]
+}
+
+model Employee {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  name      String
+  account   Account? @relation(fields: [accountId], references: [id])
+  accountId Int?
+}
+
+model Company {
+  id        Int        @id @default(autoincrement())
+  userId    Int        @unique
+  name      String
+  account   Account?   @relation(fields: [accountId], references: [id])
+  accountId Int?
+  jobOffers JobOffer[]
+}
+
+enum Skill {
+  JAVASCRIPT
+  PYTHON
+  JAVA
+  CPP
+  RUBY
+  PHP
+  HTML
+  CSS
+  SQL
+  REACT
+  ANGULAR
+  NODEJS
+  CSHARP
+  SWIFT
+  GO
+}
+
+enum ExperienceLevel {
+  TRAINEE
+  JUNIOR
+  MID
+  SENIOR
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+}
+
+enum EmploymentType {
+  CONTRACT
+  PERMANENT
+  B2B
+}
+
+model JobOffer {
+  id              Int             @id @default(autoincrement())
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  title           String
+  description     String
+  experienceLevel ExperienceLevel
+  skills          Skill[]         @default([])
+  location        String
+  jobType         JobType
+  employmentType  EmploymentType
+  company         Company?        @relation(fields: [companyId], references: [id])
+  companyId       Int?
 }
