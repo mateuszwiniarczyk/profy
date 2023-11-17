@@ -49,19 +49,26 @@ export async function POST(req: Request) {
   if (evt.type !== "user.created") return new Response("Incorrect event type", { status: 400 });
 
   try {
-    const { email_addresses, id } = evt.data;
+    const { email_addresses, id, username } = evt.data;
 
-    await prisma?.account.create({
+    const account = await prisma?.account.create({
       data: {
         email: email_addresses[0].email_address,
         clerkId: id,
       },
     });
-  } catch {
+
+    await prisma?.company.create({
+      data: {
+        name: username || "",
+        accountId: account?.id,
+      },
+    });
+
+    return new Response("", { status: 200 });
+  } catch (err) {
     return new Response("Error occured", {
       status: 400,
     });
   }
-
-  return new Response("", { status: 200 });
 }

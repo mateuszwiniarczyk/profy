@@ -21,30 +21,30 @@ enum Type {
 }
 
 model Account {
-  id        Int        @id @default(autoincrement())
-  email     String     @unique
-  role      Role       @default(USER)
-  type      Type       @default(COMPANY)
-  clerkId   String
-  companies Company[]
-  employees Employee[]
+  id      Int    @id @default(autoincrement())
+  email   String @unique
+  role    Role   @default(USER)
+  type    Type   @default(COMPANY)
+  clerkId String @unique
+
+  company  Company?
+  Employee Employee?
 }
 
 model Employee {
-  id        Int      @id @default(autoincrement())
-  userId    Int      @unique
+  id        Int     @id @default(autoincrement())
   name      String
-  account   Account? @relation(fields: [accountId], references: [id])
-  accountId Int?
+  Account   Account @relation(fields: [accountId], references: [id])
+  accountId Int     @unique
 }
 
 model Company {
-  id        Int        @id @default(autoincrement())
-  userId    Int        @unique
-  name      String
-  account   Account?   @relation(fields: [accountId], references: [id])
-  accountId Int?
+  id   Int    @id @default(autoincrement())
+  name String
+
   jobOffers JobOffer[]
+  Account   Account    @relation(fields: [accountId], references: [id])
+  accountId Int        @unique
 }
 
 enum Skill {
@@ -94,6 +94,8 @@ model JobOffer {
   location        String
   jobType         JobType
   employmentType  EmploymentType
+  minSalary       Int
+  maxSalary       Int
   company         Company?        @relation(fields: [companyId], references: [id])
   companyId       Int?
 }

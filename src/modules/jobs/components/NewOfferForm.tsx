@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type * as z from "zod";
 import { type Skill } from "@prisma/client";
+import { useTransition } from "react";
+import { ReloadIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/Button";
 import {
   Form,
@@ -26,8 +28,14 @@ import {
 import { Checkbox } from "@/components/ui/Checkbox";
 import { employmentTypes, experienceLevels, jobTypes, skills } from "@/constants/offer";
 import { offerSchema } from "@/modules/jobs/lib/validations/offer";
+import { createOffer } from "@/modules/jobs/api/actions";
 
-export const NewOfferForm = () => {
+type NewOfferFormProps = {
+  userId: string | null;
+};
+
+export const NewOfferForm = ({ userId }: NewOfferFormProps) => {
+  const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof offerSchema>>({
     resolver: zodResolver(offerSchema),
     defaultValues: {
@@ -37,9 +45,17 @@ export const NewOfferForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof offerSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof offerSchema>) => {
+    if (!userId) {
+      return;
+    }
+
+    startTransition(async () => {
+      await createOffer(values, userId);
+
+      form.reset();
+    });
+  };
 
   return (
     <Form {...form}>
@@ -253,7 +269,10 @@ export const NewOfferForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+          Submit
+        </Button>
       </form>
     </Form>
   );

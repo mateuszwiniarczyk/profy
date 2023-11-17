@@ -80,5 +80,5 @@ export const jobTypes = [
 export const employmentTypes = [
   { value: "B2B", label: "B2B" },
   { value: "CONTRACT", label: "Contract" },
-  { value: "EMPLOYMENT", label: "Employment" },
+  { value: "PERMANENT", label: "Permanent" },
 ];
