@@ -7,9 +7,14 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/Command";
+import { cn } from "@/lib/utils";
 
-export const SearchBar = () => (
-  <Command className="mx-auto mt-12 w-full max-w-4xl rounded-lg drop-shadow">
+type SearchBarProps = {
+  className?: string;
+};
+
+export const SearchBar = ({ className }: SearchBarProps) => (
+  <Command className={cn("w-full rounded-lg drop-shadow", className)}>
     <CommandInput
       placeholder="Job title, keyword or company"
       className="h-16 font-semibold text-muted-foreground"

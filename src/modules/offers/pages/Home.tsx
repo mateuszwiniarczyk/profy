@@ -1,6 +1,6 @@
-import { Recommended } from "@/modules/jobs/components/Recommended";
-import { SearchBar } from "@/modules/jobs/components/SearchBar";
-import { SuggestedJobs } from "@/modules/jobs/components/SuggestedJobs";
+import { Recommended } from "@/modules/offers/components/Recommended";
+import { SearchBar } from "@/modules/offers/components/SearchBar";
+import { SuggestedJobs } from "@/modules/offers/components/SuggestedJobs";
 
 export const Home = () => (
   <>
@@ -11,7 +11,7 @@ export const Home = () => (
         of your search
       </p>
     </div>
-    <SearchBar />
+    <SearchBar className="mx-auto mt-12 max-w-4xl" />
     <SuggestedJobs />
     <Recommended />
   </>

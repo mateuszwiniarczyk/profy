@@ -2,7 +2,7 @@
 
 import { type z } from "zod";
 
-import { offerSchema } from "@/modules/jobs/lib/validations/offer";
+import { offerSchema } from "@/modules/offers/lib/validations/offer";
 import { prisma } from "@/lib/db";
 
 export const createOffer = async (offer: z.infer<typeof offerSchema>, userId: string) => {

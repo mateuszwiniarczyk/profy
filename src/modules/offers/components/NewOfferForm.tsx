@@ -27,8 +27,8 @@ import {
 } from "@/components/ui/Select";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { employmentTypes, experienceLevels, jobTypes, skills } from "@/constants/offer";
-import { offerSchema } from "@/modules/jobs/lib/validations/offer";
-import { createOffer } from "@/modules/jobs/api/actions";
+import { offerSchema } from "@/modules/offers/lib/validations/offer";
+import { createOffer } from "@/modules/offers/api/actions";
 import { catchError } from "@/lib/utils";
 
 type NewOfferFormProps = {

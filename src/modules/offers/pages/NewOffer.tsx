@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs";
-import { NewOfferForm } from "@/modules/jobs/components/NewOfferForm";
+import { NewOfferForm } from "@/modules/offers/components/NewOfferForm";
 
 export const NewOffer = () => {
   const { userId } = auth();

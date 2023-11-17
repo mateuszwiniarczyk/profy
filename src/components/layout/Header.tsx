@@ -13,12 +13,12 @@ export const Header = () => (
       <SignedIn>
         <div className="flex gap-2">
           <Link
-            href="/jobs/new"
+            href="/offers/new"
             className={buttonVariants({
               variant: "outline",
             })}
           >
-            Post job
+            Post offer
           </Link>
           <UserButton afterSignOutUrl="/" />
         </div>

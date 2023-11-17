@@ -1,4 +1,4 @@
-import { Home } from "@/modules/jobs/pages/Home";
+import { Home } from "@/modules/offers/pages/Home";
 
 export default function HomePage() {
   return <Home />;
