@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 
@@ -8,5 +9,6 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => (
       <div className="container flex-1 py-6">{children}</div>
     </main>
     <Footer />
+    <Toaster />
   </div>
 );

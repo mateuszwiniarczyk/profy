@@ -29,6 +29,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { employmentTypes, experienceLevels, jobTypes, skills } from "@/constants/offer";
 import { offerSchema } from "@/modules/jobs/lib/validations/offer";
 import { createOffer } from "@/modules/jobs/api/actions";
+import { catchError } from "@/lib/utils";
 
 type NewOfferFormProps = {
   userId: string | null;
@@ -51,9 +52,13 @@ export const NewOfferForm = ({ userId }: NewOfferFormProps) => {
     }
 
     startTransition(async () => {
-      await createOffer(values, userId);
+      try {
+        await createOffer(values, userId);
 
-      form.reset();
+        form.reset();
+      } catch (error) {
+        catchError(error);
+      }
     });
   };
 
