@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,41 +7,40 @@ datasource db {
   url      = env("POSTGRES_PRISMA_URL")
 }
 
-enum Role {
+enum AccountRole {
   USER
   ADMIN
 }
 
-enum Type {
+enum AccountType {
   EMPLOYEE
   COMPANY
 }
 
 model Account {
-  id      Int    @id @default(autoincrement())
-  email   String @unique
-  role    Role   @default(USER)
-  type    Type   @default(COMPANY)
-  clerkId String @unique
-
+  id       Int         @id @default(autoincrement())
+  email    String      @unique
+  role     AccountRole @default(USER)
+  type     AccountType @default(COMPANY)
+  clerkId  String      @unique
   company  Company?
-  Employee Employee?
+  employee Employee?
+  avatar   String
 }
 
 model Employee {
   id        Int     @id @default(autoincrement())
   name      String
-  Account   Account @relation(fields: [accountId], references: [id])
   accountId Int     @unique
+  account   Account @relation(fields: [accountId], references: [id])
 }
 
 model Company {
-  id   Int    @id @default(autoincrement())
-  name String
-
-  jobOffers JobOffer[]
-  Account   Account    @relation(fields: [accountId], references: [id])
+  id        Int        @id @default(autoincrement())
+  name      String
   accountId Int        @unique
+  account   Account    @relation(fields: [accountId], references: [id])
+  jobOffers JobOffer[]
 }
 
 enum Skill {
@@ -94,8 +90,8 @@ model JobOffer {
   location        String
   jobType         JobType
   employmentType  EmploymentType
-  minSalary       Int
-  maxSalary       Int
-  company         Company?        @relation(fields: [companyId], references: [id])
   companyId       Int?
+  maxSalary       Int
+  minSalary       Int
+  company         Company?        @relation(fields: [companyId], references: [id])
 }

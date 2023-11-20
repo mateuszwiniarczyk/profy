@@ -88,8 +88,8 @@ export const OffersFilters = () => {
           <SelectContent>
             <SelectItem value="createdAt.asc">Date: Newest to Oldest</SelectItem>
             <SelectItem value="createdAt.desc">Date: Oldest to Newest</SelectItem>
-            <SelectItem value="price.desc">Price: Highest to Lowest</SelectItem>
-            <SelectItem value="price.asc">Price: Lowest to Highest</SelectItem>
+            <SelectItem value="salary.desc">Salary: Highest to Lowest</SelectItem>
+            <SelectItem value="salary.asc">Salary: Lowest to Highest</SelectItem>
           </SelectContent>
         </Select>
       </div>

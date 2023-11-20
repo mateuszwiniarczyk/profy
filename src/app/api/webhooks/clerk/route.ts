@@ -49,12 +49,13 @@ export async function POST(req: Request) {
   if (evt.type !== "user.created") return new Response("Incorrect event type", { status: 400 });
 
   try {
-    const { email_addresses, id, username } = evt.data;
+    const { email_addresses, id, username, image_url } = evt.data;
 
     const account = await prisma?.account.create({
       data: {
         email: email_addresses[0].email_address,
         clerkId: id,
+        avatar: image_url,
       },
     });
 

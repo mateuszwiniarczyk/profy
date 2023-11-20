@@ -10,14 +10,14 @@ export const SearchOffers = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const searchParam = searchParams?.get("q") ?? "";
+  const searchParam = searchParams?.get("query") ?? "";
   const [search, setSearch] = useState(searchParam);
   const debouncedSearch = useDebounce(search, 500);
   const { createQueryString } = useCreateSearchParams();
 
   useEffect(() => {
     const newQueryString = createQueryString({
-      q: debouncedSearch ? debouncedSearch : null,
+      query: debouncedSearch ? debouncedSearch : null,
     });
 
     router.push(`${pathname}?${newQueryString}`);

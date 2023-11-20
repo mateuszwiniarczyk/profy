@@ -51,3 +51,14 @@ export const offerSchema = z
     message: "Min Salary must be less than max salary",
     path: ["maxSalary"],
   });
+
+export const getOffersSchema = z.object({
+  limit: z.number().default(10),
+  offset: z.number().default(0),
+  sort: z.string().optional().nullable(),
+  experienceLevels: z.string().optional().nullable(),
+  jobTypes: z.string().optional().nullable(),
+  employmentTypes: z.string().optional().nullable(),
+  page: z.string().optional().nullable(),
+  query: z.string().optional().nullable(),
+});
