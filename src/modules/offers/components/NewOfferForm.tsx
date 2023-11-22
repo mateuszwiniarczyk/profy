@@ -6,6 +6,7 @@ import type * as z from "zod";
 import { type Skill } from "@prisma/client";
 import { useTransition } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/Button";
 import {
   Form,
@@ -54,6 +55,7 @@ export const NewOfferForm = ({ userId }: NewOfferFormProps) => {
     startTransition(async () => {
       try {
         await createOffer(values, userId);
+        toast.success("Offer created successfully");
 
         form.reset();
       } catch (error) {
