@@ -1,9 +1,16 @@
-import { type JobOffer } from "@prisma/client";
+import { type Account, type Company, type JobOffer } from "@prisma/client";
 import { OfferCard } from "@/modules/offers/components/OfferCard";
 import { Pagination } from "@/modules/offers/components/Pagination";
 
 type OffersListProps = {
-  offers: JobOffer[];
+  offers: (JobOffer & {
+    company:
+      | (Company & {
+          account: Account;
+        })
+      | null;
+  })[];
+
   pagesCount: number;
 };
 
@@ -14,7 +21,7 @@ export const OffersList = ({ offers, pagesCount }: OffersListProps) => (
         <ul className="flex flex-col gap-y-5">
           {offers.map((offer) => (
             <li key={offer.id}>
-              <OfferCard />
+              <OfferCard offer={offer} />
             </li>
           ))}
         </ul>

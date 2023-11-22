@@ -13,11 +13,11 @@ export const offerSchema = z
       }),
     description: z
       .string()
-      .min(3, {
-        message: "Description must be at least 3 characters long",
+      .min(200, {
+        message: "Description must be at least 200 characters long",
       })
-      .max(150, {
-        message: "Description must be less than 150 characters long",
+      .max(2000, {
+        message: "Description must be less than 2000 characters long",
       }),
     experienceLevel: z.nativeEnum(ExperienceLevel, {
       invalid_type_error: "Experience level is required",

@@ -39,11 +39,14 @@ export const getOffers = async (params: z.infer<typeof getOffersSchema>) => {
   const employmentTypes = input.employmentTypes?.split(".") as EmploymentType[];
   const experienceLevels = input.experienceLevels?.split(".") as ExperienceLevel[];
   const jobTypes = input.jobTypes?.split(".") as JobType[];
+  const [column, order] = (input.sort?.split(".") as string[]) ?? ["createdAt", "desc"];
 
   const items = await prisma.jobOffer.findMany({
     take: limit,
     skip: offset,
-
+    orderBy: {
+      [column]: order,
+    },
     where: {
       title: {
         contains: query,

@@ -86,10 +86,10 @@ export const OffersFilters = () => {
             <SelectValue placeholder="Sort offers by" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="createdAt.asc">Date: Newest to Oldest</SelectItem>
-            <SelectItem value="createdAt.desc">Date: Oldest to Newest</SelectItem>
-            <SelectItem value="salary.desc">Salary: Highest to Lowest</SelectItem>
-            <SelectItem value="salary.asc">Salary: Lowest to Highest</SelectItem>
+            <SelectItem value="createdAt.desc">Date: Newest to Oldest</SelectItem>
+            <SelectItem value="createdAt.asc">Date: Oldest to Newest</SelectItem>
+            <SelectItem value="maxSalary.desc">Salary: Highest to Lowest</SelectItem>
+            <SelectItem value="maxSalary.asc">Salary: Lowest to Highest</SelectItem>
           </SelectContent>
         </Select>
       </div>

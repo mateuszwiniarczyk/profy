@@ -59,9 +59,11 @@ export async function POST(req: Request) {
       },
     });
 
+    const name = username ? username.charAt(0).toUpperCase() + username.slice(1) : "";
+
     await prisma?.company.create({
       data: {
-        name: username || "",
+        name,
         accountId: account?.id,
       },
     });

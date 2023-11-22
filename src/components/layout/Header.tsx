@@ -20,7 +20,16 @@ export const Header = () => (
           >
             Post offer
           </Link>
-          <UserButton afterSignOutUrl="/" />
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements: {
+                avatarBox: {
+                  background: "transparent",
+                },
+              },
+            }}
+          />
         </div>
       </SignedIn>
       <SignedOut>
