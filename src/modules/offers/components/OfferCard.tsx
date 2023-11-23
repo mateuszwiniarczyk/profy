@@ -2,6 +2,7 @@ import Link from "next/link";
 import { type Account, type Company, type JobOffer } from "@prisma/client";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/Card";
+import { formatMoney } from "@/lib/utils";
 
 type OfferCardProps = {
   offer: JobOffer & {
@@ -33,7 +34,7 @@ export const OfferCard = ({
           <div className="flex items-center justify-between text-base">
             <h5 className="font-bold leading-tight text-foreground">{title}</h5>
             <span className="hidden lg:block lg:text-foreground">
-              {minSalary}$ - {maxSalary}$
+              {formatMoney(minSalary)}$ - {formatMoney(maxSalary)}$
             </span>
           </div>
           <div className="flex gap-x-2.5">

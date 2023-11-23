@@ -19,3 +19,14 @@ export function catchError(err: unknown) {
     return toast.error("Something went wrong, please try again later.");
   }
 }
+
+export const formatMoney = (amount: number) => {
+  if (typeof amount !== "number") {
+    throw new Error(`Amount must be a number, got ${typeof amount}`);
+  }
+
+  return new Intl.NumberFormat("pl-PL", {
+    style: "decimal",
+    currency: "USD",
+  }).format(amount);
+};
